@@ -1,0 +1,150 @@
+openapi: "3.0.1"
+info:
+  title: "Employee Rest API"
+  description: "API documentation"
+  version: "v1.0"
+servers:
+  - url: "http://localhost:8084"
+    description: "Generated server url"
+paths:
+  /api/employees:
+    get:
+      tags:
+        - "employees-controller"
+      operationId: "get"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+    put:
+      tags:
+        - "employees-controller"
+      operationId: "put"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmployeesDTO"
+        required: true
+      responses:
+        '200':
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+    post:
+      tags:
+        - "employees-controller"
+      operationId: "post"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmployeesDTO"
+        required: true
+      responses:
+        '200':
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+    delete:
+      tags:
+        - "employees-controller"
+      operationId: "delete"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EmployeesDTO"
+        required: true
+      responses:
+        '200':
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  /api/employees/{empId}/{newSalary}:
+    patch:
+      tags:
+        - "employees-controller"
+      operationId: "updateEmpSalary"
+      parameters:
+        - name: "empId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+        - name: "newSalary"
+          in: "path"
+          required: true
+          schema:
+            type: "number"
+            format: "double"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+  /api/employeesreqparam:
+    get:
+      tags:
+        - "employees-controller"
+      operationId: "getByReqParam"
+      parameters:
+        - name: "empId"
+          in: "query"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                $ref: "#/components/schemas/EmployeesDTO"
+  /api/employees/{empId}:
+    get:
+      tags:
+        - "employees-controller"
+      operationId: "get_1"
+      parameters:
+        - name: "empId"
+          in: "path"
+          required: true
+          schema:
+            type: "integer"
+            format: "int32"
+      responses:
+        '200':
+          description: "OK"
+          content:
+            "*/*":
+              schema:
+                type: "object"
+components:
+  schemas:
+    EmployeesDTO:
+      type: "object"
+      properties:
+        employeeId:
+          type: "integer"
+          format: "int32"
+        employeeName:
+          type: "string"
+        employeeSalary:
+          type: "number"
+          format: "double"
+        employeeDesignation:
+          type: "string"
